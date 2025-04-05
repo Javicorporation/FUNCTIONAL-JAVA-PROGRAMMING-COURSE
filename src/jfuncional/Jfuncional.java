@@ -9,42 +9,49 @@ public class Jfuncional {
 
     public static void main(String[] args) {
         
+        
+        
+        Function<Producto, Double> total = p -> p.precio * p.cantidad;
+        
+        Producto producto = new Producto("Teclado", 25.0, 2);
+        System.out.println(total.apply(producto));
+        
         // BiFuntion
         // concatenar un string que se repite una sierta cantidad de veces
-         BiFunction<String, Integer, String> union = (str , veces) -> str.repeat(veces);
-         System.out.println(union.apply("BMW", 4));
-         
+//         BiFunction<String, Integer, String> union = (str , veces) -> str.repeat(veces);
+//         System.out.println(union.apply("BMW", 4));
+//         
          
          // calcular con precio y cantidad
-         BiFunction<Double,Integer,Double> total = (preci, cant) -> preci * cant;
-         System.out.println(total.apply(3.33, 3));
+//         BiFunction<Double,Integer,Double> total = (preci, cant) -> preci * cant;
+//         System.out.println(total.apply(3.33, 3));
         
     
          // combina 2 objetos
-         class  Persona{
-            String nombre;
-            int edad;
-
-            Persona(String nombre, int edad){
-                this.nombre = nombre;
-                this.edad = edad;
-            }
-            public String toString(){
-                return nombre+ " tiene "+edad+" años";
-            }
-         }
+//         class  Persona{
+//            String nombre;
+//            int edad;
+//
+//            Persona(String nombre, int edad){
+//                this.nombre = nombre;
+//                this.edad = edad;
+//            }
+//            public String toString(){
+//                return nombre+ " tiene "+edad+" años";
+//            }
+//         }
          
-         BiFunction<String, Integer, Persona> crearPersona =(nom , eda)-> 
-                 new Persona(nom, eda);
-         System.out.println(crearPersona.apply("Juanin", 23));
-        
+//         BiFunction<String, Integer, Persona> crearPersona =(nom , eda)-> 
+//                 new Persona(nom, eda);
+//         System.out.println(crearPersona.apply("Juanin", 23));
+//        
          // uso de andThen para encadenar 2 funciones
          
-         BiFunction<Integer, Integer, Integer> suma = (g, j) -> g+j;
-         Function<Integer, String> aTexto = resultado -> "Resultado: "+ resultado;
-        
-         String mensaje = suma.andThen(aTexto).apply(4,5);
-         System.out.println(mensaje);
+//         BiFunction<Integer, Integer, Integer> suma = (g, j) -> g+j;
+//         Function<Integer, String> aTexto = resultado -> "Resultado: "+ resultado;
+//        
+//         String mensaje = suma.andThen(aTexto).apply(4,5);
+//         System.out.println(mensaje);
         // definimos una lambda que emplemente BinaryOperator<>
 //        BinaryOperator<Integer> max = (a,b)-> a > b ?a:b;
 //        System.out.println(max.apply(10,05));
