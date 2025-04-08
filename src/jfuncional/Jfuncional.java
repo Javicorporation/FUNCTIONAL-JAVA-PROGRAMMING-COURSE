@@ -10,11 +10,17 @@ public class Jfuncional {
     public static void main(String[] args) {
         
         
+        Function<String, Function<Double, Function<Integer, String>>> infoProducto =
+                nombre -> precio -> cantidad -> "Producto: "+nombre+", Total: "+(precio*cantidad);
+        String resultado = infoProducto.apply("Mouse").apply(12.50).apply(2);
         
-        Function<Producto, Double> total = p -> p.precio * p.cantidad;
+        System.out.println(resultado);
         
-        Producto producto = new Producto("Teclado", 25.0, 2);
-        System.out.println(total.apply(producto));
+        
+//        Function<Producto, Double> total = p -> p.precio * p.cantidad;
+//        
+//        Producto producto = new Producto("Teclado", 25.0, 2);
+//        System.out.println(total.apply(producto));
         
         // BiFuntion
         // concatenar un string que se repite una sierta cantidad de veces
