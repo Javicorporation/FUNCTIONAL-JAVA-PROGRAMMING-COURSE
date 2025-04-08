@@ -1,6 +1,9 @@
 package jfuncional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
@@ -10,19 +13,40 @@ public class Jfuncional {
 
     public static void main(String[] args) {
         
-        BiPredicate<String, Integer> accesoPermitido = (nombre, edad) -> edad >= 18;
-        System.out.println(accesoPermitido.test("Ana", 20)); // true
-        System.out.println(accesoPermitido.test("Luis", 19)); // false
+        
+        // ejemplo de unir palabras
+//        BiConsumer<String, Integer> imprimirP = (nombre, edad) ->
+//                System.out.println(nombre+" tiene "+edad+" años");
+//        
+//        imprimirP.accept("Juanin", 12);
         
         
-        //
-        BiPredicate<String, Integer> empiezaConA = (palabra, _) -> palabra.startsWith("A");
-        BiPredicate<String, Integer> longitudMayorA5 = (palabra, _) -> palabra.length() > 5;
+        // ejemplo de insertar elementos en un map
+        
+        Map<String, Integer>mapa = new HashMap<>();
+        BiConsumer<String, Integer> agregarAlMapa = (clave, valor) ->
+                mapa.put(clave, valor);
+        
+        agregarAlMapa.accept("a",1);        
+        agregarAlMapa.accept("A",2);
+        
+        System.out.println(mapa);
 
-        BiPredicate<String, Integer> combinada = empiezaConA.and(longitudMayorA5);
-
-        System.out.println(combinada.test("Animales", 0)); // true
-        System.out.println(combinada.test("Ave", 0));      // false
+        
+        
+//        BiPredicate<String, Integer> accesoPermitido = (nombre, edad) -> edad >= 18;
+//        System.out.println(accesoPermitido.test("Ana", 20)); // true
+//        System.out.println(accesoPermitido.test("Luis", 19)); // false
+//        
+//        
+//        //
+//        BiPredicate<String, Integer> empiezaConA = (palabras, _) -> palabras.startsWith("A");
+//        BiPredicate<String, Integer> longitudMayorA5 = (palabra, _) -> palabra.length() > 5;
+//
+//        BiPredicate<String, Integer> combinada = empiezaConA.and(longitudMayorA5);
+//
+//        System.out.println(combinada.test("Animales", 0)); // true
+//        System.out.println(combinada.test("Ave", 0));      // false
         
         
         
