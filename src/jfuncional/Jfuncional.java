@@ -9,12 +9,22 @@ public class Jfuncional {
 
     public static void main(String[] args) {
         
+        TriFuntion<String, Double, Integer, String> resumenProducto =
+                (nombre, precio, cantidad) ->
+                        "Producto: "+nombre+", Total: "+(precio * cantidad);
         
-        Function<String, Function<Double, Function<Integer, String>>> infoProducto =
-                nombre -> precio -> cantidad -> "Producto: "+nombre+", Total: "+(precio*cantidad);
-        String resultado = infoProducto.apply("Mouse").apply(12.50).apply(2);
+        String resultado = resumenProducto.apply("Monitor", 1.50, 2);
         
         System.out.println(resultado);
+        
+        
+        
+        
+//        Function<String, Function<Double, Function<Integer, String>>> infoProducto =
+//                nombre -> precio -> cantidad -> "Producto: "+nombre+", Total: "+(precio*cantidad);
+//        String resultado = infoProducto.apply("Mouse").apply(12.50).apply(2);
+//        
+//        System.out.println(resultado);
         
         
 //        Function<Producto, Double> total = p -> p.precio * p.cantidad;
