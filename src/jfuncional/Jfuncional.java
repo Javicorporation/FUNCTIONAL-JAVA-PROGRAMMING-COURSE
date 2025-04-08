@@ -10,10 +10,26 @@ public class Jfuncional {
 
     public static void main(String[] args) {
         
-        BiPredicate<String, String> empiezaCon = (cadena, prefijo) -> cadena.startsWith(prefijo);
+        BiPredicate<String, Integer> accesoPermitido = (nombre, edad) -> edad >= 18;
+        System.out.println(accesoPermitido.test("Ana", 20)); // true
+        System.out.println(accesoPermitido.test("Luis", 19)); // false
         
-        System.out.println(empiezaCon.test("programacion", "pro"));        System.out.println(empiezaCon.test("programacion", "pro"));
-        System.out.println(empiezaCon.test("java", "va"));
+        
+        //
+        BiPredicate<String, Integer> empiezaConA = (palabra, _) -> palabra.startsWith("A");
+        BiPredicate<String, Integer> longitudMayorA5 = (palabra, _) -> palabra.length() > 5;
+
+        BiPredicate<String, Integer> combinada = empiezaConA.and(longitudMayorA5);
+
+        System.out.println(combinada.test("Animales", 0)); // true
+        System.out.println(combinada.test("Ave", 0));      // false
+        
+        
+        
+//        BiPredicate<String, String> empiezaCon = (cadena, prefijo) -> cadena.startsWith(prefijo);
+//        
+//        System.out.println(empiezaCon.test("programacion", "pro"));        System.out.println(empiezaCon.test("programacion", "pro"));
+//        System.out.println(empiezaCon.test("java", "va"));
 
         
         
