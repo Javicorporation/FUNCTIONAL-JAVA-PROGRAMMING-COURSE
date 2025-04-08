@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class Jfuncional {
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
         
         
         // ejemplo de unir palabras
@@ -23,14 +23,14 @@ public class Jfuncional {
         
         // ejemplo de insertar elementos en un map
         
-        Map<String, Integer>mapa = new HashMap<>();
-        BiConsumer<String, Integer> agregarAlMapa = (clave, valor) ->
-                mapa.put(clave, valor);
-        
-        agregarAlMapa.accept("a",1);        
-        agregarAlMapa.accept("A",2);
-        
-        System.out.println(mapa);
+//        Map<String, Integer>mapa = new HashMap<>();
+//        BiConsumer<String, Integer> agregarAlMapa = (clave, valor) ->
+//                mapa.put(clave, valor);
+//        
+//        agregarAlMapa.accept("a",1);        
+//        agregarAlMapa.accept("A",2);
+//        
+//        System.out.println(mapa);
 
         
         
@@ -150,6 +150,6 @@ public class Jfuncional {
 //        // con tipo explicito        
 //        (String nombre) -> {return nombre.length}
         
-    }
+    //}
     
 }
