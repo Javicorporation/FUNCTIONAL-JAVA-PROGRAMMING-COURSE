@@ -2,6 +2,7 @@ package jfuncional;
 
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
@@ -9,13 +10,21 @@ public class Jfuncional {
 
     public static void main(String[] args) {
         
-        TriFuntion<String, Double, Integer, String> resumenProducto =
-                (nombre, precio, cantidad) ->
-                        "Producto: "+nombre+", Total: "+(precio * cantidad);
+        BiPredicate<String, String> empiezaCon = (cadena, prefijo) -> cadena.startsWith(prefijo);
         
-        String resultado = resumenProducto.apply("Monitor", 1.50, 2);
+        System.out.println(empiezaCon.test("programacion", "pro"));        System.out.println(empiezaCon.test("programacion", "pro"));
+        System.out.println(empiezaCon.test("java", "va"));
+
         
-        System.out.println(resultado);
+        
+        
+//        TriFuntion<String, Double, Integer, String> resumenProducto =
+//                (nombre, precio, cantidad) ->
+//                        "Producto: "+nombre+", Total: "+(precio * cantidad);
+//        
+//        String resultado = resumenProducto.apply("Monitor", 1.50, 2);
+//        
+//        System.out.println(resultado);
         
         
         
