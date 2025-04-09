@@ -1,32 +1,47 @@
 package jfuncional;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Princip {
     public static void main(String[] args) {
         
         
+        List<Persona> personas = List.of(
+                new Persona("Ana", 25),
+                new Persona("Juan", 30),
+                new Persona("Luisa", 20)
+        );
+        
+        Function<Persona,String> obtenerNo = Persona::getNombre;
+        
+        
+        List<String> nombres = personas.stream()
+                .map(obtenerNo)
+                .collect(Collectors.toList());
+        System.out.println(nombres);
         
         
         // aplicacamos la primera funcion y luego aplica otro
         
         //F1
-        Function<Integer, Integer> doble = n -> n*2;
+//        Function<Integer, Integer> doble = n -> n*2;
         //F2
-        Function<Integer, String> convertir = n -> "resultado: "+n;
+//        Function<Integer, String> convertir = n -> "resultado: "+n;
         //F3 esta tercera funcion combina las 2 funciones anteriores
-        Function<Integer, String> combinado = doble.andThen(convertir);
-        
-        System.out.println(combinado.apply(5));
+//        Function<Integer, String> combinado = doble.andThen(convertir);
+//        
+//        System.out.println(combinado.apply(5));
         
         
         // aplicamos primero la segunda funcion y despues la primera funcion
-        Function<String, String> quitarEspacios = s -> s.trim();
-        Function<String, Integer> contarCaract = s -> s.length();
-        
-        Function<String, Integer> limpiaYCuenta = contarCaract.compose(quitarEspacios);
-        System.out.println(limpiaYCuenta.apply("Hola que"));
-        
+//        Function<String, String> quitarEspacios = s -> s.trim();
+//        Function<String, Integer> contarCaract = s -> s.length();
+//        
+//        Function<String, Integer> limpiaYCuenta = contarCaract.compose(quitarEspacios);
+//        System.out.println(limpiaYCuenta.apply("Hola que"));
+//        
         
         
         
