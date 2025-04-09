@@ -2,25 +2,49 @@ package jfuncional;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Princip {
     public static void main(String[] args) {
         
-        
-        List<Persona> personas = List.of(
-                new Persona("Ana", 25),
-                new Persona("Juan", 30),
-                new Persona("Luisa", 20)
+        // creamos la lista y insertamos personas con .of
+        List<Persona> personitas = List.of(
+                new Persona("Juana", 12),
+                new Persona("Carla", 19),
+                new Persona("Alicia", 22),
+                new Persona("Araceli", 12)
+         
         );
         
-        Function<Persona,String> obtenerNo = Persona::getNombre;
+        // validamos las condiciones
+        Predicate<Persona> esMa = p -> p.getEdad()>=18;
+        Predicate<Persona> comiA = p -> p.getNombre().startsWith("A");
         
-        
-        List<String> nombres = personas.stream()
-                .map(obtenerNo)
+        // creamos una nueva lista con las personas ya filtrandas
+        List<Persona> filtradas = personitas.stream()
+                .filter(esMa.and(comiA))
                 .collect(Collectors.toList());
-        System.out.println(nombres);
+        
+        // recorremos la lista
+        filtradas.forEach(p -> System.out.println(p.getNombre()));
+        
+        
+        
+        
+//        List<Persona> personas = List.of(
+//                new Persona("Ana", 25),
+//                new Persona("Juan", 30),
+//                new Persona("Luisa", 20)
+//        );
+//        
+//        Function<Persona,String> obtenerNo = Persona::getNombre;
+//        
+//        
+//        List<String> nombres = personas.stream()
+//                .map(obtenerNo)
+//                .collect(Collectors.toList());
+//        System.out.println(nombres);
         
         
         // aplicacamos la primera funcion y luego aplica otro
