@@ -2,38 +2,65 @@ package jfuncional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class Princip {
     public static void main(String[] args) {
         
+        List<Persona> perosonas = new ArrayList<>();
         
-        List<Persona> personas = List.of(
-                new Persona("Ana", 20),
-                new Persona("Carla", 17),
-                new Persona("Carla", 30)
-        );
-        List<String> auditoria = new ArrayList<>();
+        Random random = new Random();
         
-        // verificamos la edad
-        Predicate<Persona> esMayor = p -> p.getEdad() >=18;
+        Supplier<Persona> genPerso = () ->{
+            int id = random.nextInt(1000);
+            return new Persona("user"+ id);
+        };
         
-        // imprimimos 
-        Consumer<Persona> imprimir = p -> System.out.println("Registrado "+p.getNombre());
-        // agrgamos a la nueva lista
-        Consumer<Persona> guardar = p -> auditoria.add(p.getNombre());
+        Predicate<Persona> validaN = n -> n.getNombre().length() > 7;
         
-        // combinamos los Consumer
-        Consumer<Persona> registrar = imprimir.andThen(guardar);
         
-        personas.stream()
-                .filter(esMayor)
-                .forEach(registrar);
+        for (int i = 0; i < 3; i++) {
+            Persona p = genPerso.get();
+            if (validaN.test(p)) {
+                perosonas.add(p);
+                System.out.println("Agregado: "+p.getNombre());
+            }else{
+                System.out.println("Descartado: "+p.getNombre());
+            }
+        }
         
-        System.out.println("Auditoria "+ auditoria);
+        System.out.println("Usarios validos: "+perosonas.size());
+        
+        // guarda los nombres de las personas mayores
+//       
+//        List<Persona> personas = List.of(
+//                new Persona("Ana", 20),
+//                new Persona("Carla", 17),
+//                new Persona("Carla", 30)
+//        );
+//        List<String> auditoria = new ArrayList<>();
+//        
+//        // verificamos la edad
+//        Predicate<Persona> esMayor = p -> p.getEdad() >=18;
+//        
+//        // imprimimos 
+//        Consumer<Persona> imprimir = p -> System.out.println("Registrado "+p.getNombre());
+//        // agrgamos a la nueva lista
+//        Consumer<Persona> guardar = p -> auditoria.add(p.getNombre());
+//        
+//        // combinamos los Consumer
+//        Consumer<Persona> registrar = imprimir.andThen(guardar);
+//        
+//        personas.stream()
+//                .filter(esMayor)
+//                .forEach(registrar);
+//        
+//        System.out.println("Auditoria "+ auditoria);
         
         
         
