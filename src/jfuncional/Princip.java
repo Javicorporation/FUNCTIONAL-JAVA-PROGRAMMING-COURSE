@@ -1,6 +1,8 @@
 package jfuncional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -8,26 +10,56 @@ import java.util.stream.Collectors;
 public class Princip {
     public static void main(String[] args) {
         
-        // creamos la lista y insertamos personas con .of
-        List<Persona> personitas = List.of(
-                new Persona("Juana", 12),
-                new Persona("Carla", 19),
-                new Persona("Alicia", 22),
-                new Persona("Araceli", 12)
-         
+        
+        List<Persona> personas = List.of(
+                new Persona("Ana", 20),
+                new Persona("Carla", 17),
+                new Persona("Carla", 30)
         );
+        List<String> auditoria = new ArrayList<>();
         
-        // validamos las condiciones
-        Predicate<Persona> esMa = p -> p.getEdad()>=18;
-        Predicate<Persona> comiA = p -> p.getNombre().startsWith("A");
+        // verificamos la edad
+        Predicate<Persona> esMayor = p -> p.getEdad() >=18;
         
-        // creamos una nueva lista con las personas ya filtrandas
-        List<Persona> filtradas = personitas.stream()
-                .filter(esMa.and(comiA))
-                .collect(Collectors.toList());
+        // imprimimos 
+        Consumer<Persona> imprimir = p -> System.out.println("Registrado "+p.getNombre());
+        // agrgamos a la nueva lista
+        Consumer<Persona> guardar = p -> auditoria.add(p.getNombre());
         
-        // recorremos la lista
-        filtradas.forEach(p -> System.out.println(p.getNombre()));
+        // combinamos los Consumer
+        Consumer<Persona> registrar = imprimir.andThen(guardar);
+        
+        personas.stream()
+                .filter(esMayor)
+                .forEach(registrar);
+        
+        System.out.println("Auditoria "+ auditoria);
+        
+        
+        
+        
+        
+        
+//        // creamos la lista y insertamos personas con .of
+//        List<Persona> personitas = List.of(
+//                new Persona("Juana", 12),
+//                new Persona("Carla", 19),
+//                new Persona("Alicia", 22),
+//                new Persona("Araceli", 12)
+//         
+//        );
+//        
+//        // validamos las condiciones
+//         Predicate<Persona> esMa = p -> p.getEdad()>=18;
+//        Predicate<Persona> comiA = p -> p.getNombre().startsWith("A");
+//        
+//        // creamos una nueva lista con las personas ya filtrandas
+//        List<Persona> filtradas = personitas.stream()
+//                .filter(esMa.and(comiA))
+//                .collect(Collectors.toList());
+//        
+//        // recorremos la lista
+//        filtradas.forEach(p -> System.out.println(p.getNombre()));
         
         
         
