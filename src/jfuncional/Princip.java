@@ -12,29 +12,37 @@ import java.util.stream.Collectors;
 public class Princip {
     public static void main(String[] args) {
         
-        List<Persona> perosonas = new ArrayList<>();
-        
-        Random random = new Random();
-        
-        Supplier<Persona> genPerso = () ->{
-            int id = random.nextInt(1000);
-            return new Persona("user"+ id);
+        CalcularDescuento calcDes = (precio, porc, codi) ->{
+            double descuento = precio*(porc/100);
+            if ("VIP".equalsIgnoreCase(codi)) {
+                descuento +=10;
+            }
+            return precio-descuento;
         };
         
-        Predicate<Persona> validaN = n -> n.getNombre().length() > 7;
-        
-        
-        for (int i = 0; i < 3; i++) {
-            Persona p = genPerso.get();
-            if (validaN.test(p)) {
-                perosonas.add(p);
-                System.out.println("Agregado: "+p.getNombre());
-            }else{
-                System.out.println("Descartado: "+p.getNombre());
-            }
-        }
-        
-        System.out.println("Usarios validos: "+perosonas.size());
+//        List<Persona> perosonas = new ArrayList<>();
+//        
+//        Random random = new Random();
+//        
+//        Supplier<Persona> genPerso = () ->{
+//            int id = random.nextInt(1000);
+//            return new Persona("user"+ id);
+//        };
+//        
+//        Predicate<Persona> validaN = n -> n.getNombre().length() > 7;
+//        
+//        
+//        for (int i = 0; i < 3; i++) {
+//            Persona p = genPerso.get();
+//            if (validaN.test(p)) {
+//                perosonas.add(p);
+//                System.out.println("Agregado: "+p.getNombre());
+//            }else{
+//                System.out.println("Descartado: "+p.getNombre());
+//            }
+//        }
+//        
+//        System.out.println("Usarios validos: "+perosonas.size());
         
         // guarda los nombres de las personas mayores
 //       
