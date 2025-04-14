@@ -13,6 +13,10 @@ public class BusquedaUseOp {
                 new Usuario("Carla",24)
         );
         
+        Opera.buscarUsuario("Juana", usuarios);
+        Opera.buscarUsuario("Maria", usuarios);
+        Opera.buscarUsuario("Liz", usuarios);
+        
         
         
     }
